@@ -30,14 +30,14 @@ import { Component } from "react"
 
 class App extends Component {
     state = {
-        count :1,
+        count: 1,
         data: {
-            name : 'kkb',
+            name: 'kkb',
             age: 18
         }
     }
-    render(){
-        const {count,data} = this.state;
+    render() {
+        const { count, data } = this.state;
         // setTimeout(()=>{
         //     this.setState({
         //         count: count + 1
@@ -66,9 +66,9 @@ class App extends Component {
             }}>data年龄递增</button> */}
 
             <p>同步or异步: {this.state.count}</p>
-            <button onClick={()=>{
-                this.setState ({
-                    count: this.state.count +1
+            <button onClick={() => {
+                this.setState({
+                    count: this.state.count + 1
                 })
                 console.log(this.state.count)
             }}>count---递增</button>
