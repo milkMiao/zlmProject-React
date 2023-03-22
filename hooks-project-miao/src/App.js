@@ -1,41 +1,25 @@
-import { Component } from 'react';
-import Child from "./Child-useState";
+import Child from "./Child";
+import {useState} from 'react';
 
 /*
-  1、函数式组件，本质上就是一个常规函数，接收一个参数props，
-  在函数的 return 定义，该组件要输出的视图；
-  如下： App(){...} 就是一个函数组件
+  类组件：
+  1、componentDidMount、componentDidUpdate、componentWillUnmount 需要清除副作用；
 
-  2、函数式组件中没有this，和生命周期
-
-  3、使用函数式组件时，应该尽量减少函数中--子组件的声明，否则--组件每次更新时都会--重新创建这个函数；
+  useEffect--副作用钩子
 */
 
-// function App() {
-//   return (
-//     <>
-//       <h1>Hello React ~</h1>
-//       <Child />
-//     </>
-//   );
-// }
-
-//类组件写法
-class App extends Component {
-  state = {
-    count: 1
-  }
-  addCount = () => {
-     this.setState({
-        count: this.state.count +1
-     })
-  }
-  render() {
-    const {count} = this.state;
-    return <>
-      <Child count={count} addCount={this.addCount}  info="传递信息" />
+function App() {
+  const [show, setShow] = useState(true)
+  return (
+    <>
+      <h1>useEffect使用</h1>
+      {show ?  <Child /> : ""}
+      <button 
+        onClick={()=>{
+          setShow(!show)
+      }}>显示隐藏</button>
     </>
-  }
+  );
 }
 
 export default App;
