@@ -108,6 +108,7 @@ class App extends Component {
             title
           }
         }
+        console.log('item-----', item)
         return item;
       })
     })

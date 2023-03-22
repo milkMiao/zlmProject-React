@@ -16,7 +16,7 @@ class TodoItem extends Component {
         return props.todo;
     }
     //未编辑状态--》到编辑状态
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate(prevProps, prevState) {//更新之前
         if ((!prevState.edit) && this.state.edit) {
             this.editInput.current.focus();
         }
@@ -59,10 +59,10 @@ class TodoItem extends Component {
         const { editTodo, todo } = this.props;
         const { editVal } = this.state;
         if (editVal.trim()) {
-            editTodo(todo.id, editVal)
+            editTodo(editVal, todo.id)
         } else {
             this.setState({
-                editVal: todo.title
+                editVal: todo.title,
             })
         }
         this.setState({
@@ -75,11 +75,11 @@ class TodoItem extends Component {
         在编辑todoItem时候，如果todoItem的值为空，则恢复编辑之前的数据；
     */
     editTitleChange = ({ target }) => {
-        // const { editTodo, todo } = this.props;
-        // console.log('editTitleChange-----', target.value)
-        // editTodo(todo.id, target.value);
+        const { editTodo, todo } = this.props;
+        console.log('editTitleChange-----', target.value)
+        editTodo(target.value, todo.id);
         this.setState({
-            editVal: target.value
+            editVal: target.value,
         })
     }
 
@@ -103,11 +103,8 @@ class TodoItem extends Component {
                             checked={done}
                             onChange={this.doneItem}
                         />
-                        <span
-                            className={`${done ? 'todo-content' : ''}`}
-                            onDoubleClick={this.toEmitItem}
-                        >{title}</span>
-                        <span className="todo-destory" onClick={this.removeItem}>X</span>
+                        <span onDoubleClick={this.toEmitItem} className={`${done ? 'todo-content' : ''}`}>{title}</span>
+                        <span onClick={this.removeItem} className="todo-destory">X</span>
                     </div>
 
                     {/* ref={(node) => {
@@ -117,8 +114,8 @@ class TodoItem extends Component {
                         <input
                             className="todo-input"
                             type="text"
-                            value={title}
                             ref={this.editInput}
+                            value={title}
                             onChange={this.editTitleChange}
                             onBlur={this.cancelEmtItem}
                         />
