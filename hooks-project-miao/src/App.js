@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import Child from "./Child";
+import Child from "./Child-useState";
 
 /*
   1、函数式组件，本质上就是一个常规函数，接收一个参数props，

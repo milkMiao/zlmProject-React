@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hooks为什么要保持调用顺序?</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script>
+        //1、一个操作项的时候：satte=null
+        // let state=null;
+        // function useState(init) {
+        //     let nowState = state === null ? init : state;
+        //     return [nowState, (newState) => {
+        //         state = newState;
+        //         render();
+        //     }]
+        // }
+        
+        //2、多个操作项的时候：state=[]--空数组
+        let state = [];
+        let index =0;
+        function useState(init) {
+            let nowIndex = index++;
+
+            if(state[nowIndex] === undefined){
+                state[nowIndex] = init;
+            }
+            return [state[nowIndex], (newState) => {
+                state[nowIndex] = newState;
+                render();
+            }]
+        }
+
+        function render() {
+            index = 0;
+
+            //1、递增
+            let root = document.querySelector('#root');
+            let p = document.createElement("p");
+            let btn = document.createElement("button");
+            let [count, setCount] = useState(10);
+            p.innerHTML = "count--->" + count;
+            btn.innerHTML = "递增";
+            root.innerHTML = ""
+            btn.onclick = () => {
+                setCount(count + 1);
+            }
+
+            //2、递减
+            let p2 = document.createElement("p");
+            let btn2 = document.createElement("button");
+            let [nub, setNub] = useState(5);
+            p2.innerHTML = "nub--->" + nub;
+            btn2.innerHTML = "递减";
+            btn2.onclick = () => {
+                setNub(nub - 1);
+            }
+
+            root.appendChild(p);
+            root.appendChild(btn);
+            root.appendChild(p2);
+            root.appendChild(btn2);
+        }
+        render();
+    </script>
+</body>
+
+</html>
