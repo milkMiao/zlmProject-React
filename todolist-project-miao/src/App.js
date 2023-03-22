@@ -29,7 +29,7 @@ class App extends Component {
     注意：state是不可变值，在修改state时，不要修改原有的state，
          而是根据原有的state映射出修改的state；
   */
-  addTodo = ({keyCode, target}) => {
+  addTodo = ({ keyCode, target }) => {
     const { todo } = this.state;
     // console.log('输入框----', target.value)
     if (keyCode === 13) {//回车
@@ -65,25 +65,25 @@ class App extends Component {
 
   //删除TodoItem
   removeTodo = (id) => {
-    const {todo} = this.state;
+    const { todo } = this.state;
     this.setState({
       todo: todo.filter(item => item.id !== id) //filter--本身就返回一个新的引用
     })
   }
-  changeDone = (id,done) => {
-    const {todo} = this.state;
+  changeDone = (id, done) => {
+    const { todo } = this.state;
     //修改前: 原有基础数据上修改
     // todo.forEach(item =>{
-      // if(item.id === id){
-      //   console.log('changeTodo----',item.id)
-      //   item.done = done;
-      // }
+    // if(item.id === id){
+    //   console.log('changeTodo----',item.id)
+    //   item.done = done;
+    // }
     // })
 
     //修改后
     this.setState({
-      todo: todo.map(item =>{//map是映射新的引用
-        if(item.id === id){
+      todo: todo.map(item => {//map是映射新的引用
+        if (item.id === id) {
           // console.log('changeTodo----',item.id)
           item.done = done;
           return {
@@ -96,8 +96,28 @@ class App extends Component {
     })
     // console.log('App.js----changeDOne', todo)
   }
-  editTodo = () => {
-
+  //编辑todoItem
+  editTodo = (title, id) => {
+    const { todo } = this.state;
+    this.setState({
+      todo: todo.map(item => {//map是映射新的引用
+        if (item.id === id) {
+          // console.log('editTodo----',item.id)
+          return {
+            ...item,
+            title
+          }
+        }
+        return item;
+      })
+    })
+  }
+  //删除--已完成的todoItem
+  removeDone = () => {
+    const { todo } = this.state;
+    this.setState({
+      todo: todo.filter(item => (!item.done))
+    })
   }
   render() {
     const { todo } = this.state;
@@ -114,14 +134,28 @@ class App extends Component {
         ></input>
       </div>
 
-      <Todos
-        todo={todo}
-        removeTodo={this.removeTodo}
-        changeDone={this.changeDone}
-        editTodo={this.editTodo}
-      />
+      {/* ref作用：获取当前节点实例/组件实例 */}
+      {/* ref={(cmp)=>{
+          console.log('cmp-----', cmp)
+        }} */}
 
-      <Stats />
+      {todo.length > 0 ?
+        <>
+          <Todos
+            todo={todo}
+            removeTodo={this.removeTodo}
+            changeDone={this.changeDone}
+            editTodo={this.editTodo}
+          />
+
+          <Stats
+            todo={todo}
+            removeDone={this.removeDone}
+          />
+        </>
+        : ""
+      }
+
     </div>
   }
 }

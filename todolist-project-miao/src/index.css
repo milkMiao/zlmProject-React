@@ -59,7 +59,9 @@ code {
 .display .todo-content{
   display: inline-block;
   background-color: beige;
-  width: 120px;
+  /* width: 120px; */
+  text-decoration: line-through !important;
+  color: #888 !important;
 }
 .display .todo-destory{
   text-align: center;
