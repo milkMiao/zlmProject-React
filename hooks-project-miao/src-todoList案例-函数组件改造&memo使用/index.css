@@ -1,0 +1,98 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+#todoapp{
+  border: 1px solid red;
+  width: 500px;
+  margin: 0 auto;
+  background-color: antiquewhite;
+}
+.title{
+  text-align: center;
+}
+#create-todo{
+  text-align: center;
+}
+#new-todo{
+  width: 200px;
+  padding: 10px;
+  font-size: 14px;
+}
+
+#create-todo{
+  background-color: burlywood;
+}
+
+#todo-list{
+  border: 1px solid #ccc;
+}
+
+/* #todo-list .editing{
+    background-color: pink;
+} */
+
+/* #todo-list .editing .todo {
+  color: red !important;
+} */
+#todo-list .editing .todo .todo-content{
+  text-decoration: line-through !important;
+}
+#todo-list .editing .done{
+  color: #888 !important;
+}
+
+
+.display, .edit{
+  display: inline-block;
+}
+.display .todo-content{
+  display: inline-block;
+  background-color: beige;
+  /* width: 120px; */
+  text-decoration: line-through !important;
+  color: #888 !important;
+}
+.display .todo-destory{
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  background-color: green;
+  display: inline-block;
+  color: #000;
+  margin-left: 20px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+
+#todo-stats{
+  padding: 0 10px;
+}
+#todo-stats .todo-count{
+  text-align: left !important;
+  width: 100px;
+}
+#todo-stats .todo-count .number{
+  font-weight: 600;
+}
+#todo-stats .todo-clear{
+  display: inline-block !important;
+  text-align: right;
+  width: 400px;
+}
+#todo-stats .todo-clear a{
+  color: #000;
+  text-decoration: none;
+}
