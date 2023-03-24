@@ -11,6 +11,8 @@ import { createStore } from "redux";
       5、replaceReducer 替换掉reducer；
 
   reducer函数（纯函数）
+  1、相同的输入，永远返回相同的输出；【输入的state--count=1，输出--count=2】同类型&返回的是state
+  2、纯函数内部，不能有任何副作用--
 
   action：本身是一个普通对象，该对象有 type 和 payload 属性组成；
     1、type：属性是对 state 做出何种修改的描述
