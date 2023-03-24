@@ -5,7 +5,7 @@ export default ()=>{
     const nub = useSelector(state=> state.nub)
     const dispatch = useDispatch();
     const addNub = useCallback(()=>{
-        dispatch({ type: "nub/add" })
+        dispatch({ type: "nub-add" })
     },[])
 
     console.log("Nub子组件-----", nub)

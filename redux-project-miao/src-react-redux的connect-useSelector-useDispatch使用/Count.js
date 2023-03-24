@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { connect } from "react-redux"
-// import actions from "./actions";
+
 /*
     const withConnect = connect(select: (state)=>{ 
         return { count: state.count } //返回是一个对象
@@ -15,11 +15,7 @@ function Count(props) {
     console.log("Count子组件---", props)
     const {count, dispatch} = props;
     const addCount = useCallback(()=>{
-        //方法一：
-        dispatch({ type: "count/add" })  
-        
-        //方法二：
-        // dispatch({ type: actions.count.add })
+        dispatch({ type: "count-add" })
     },[])
     return <div>
         <p>Count: {count}</p>
